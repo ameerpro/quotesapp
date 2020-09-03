@@ -1,0 +1,115 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-kapt'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+
+    testBuildType "debug"
+    signingConfigs {
+        config {
+            keyAlias 'QuotesApp'
+            keyPassword 'quotes123'
+            storeFile file('quotes-keystore.jks')
+            storePassword 'quotes123'
+        }
+        debug {
+            storeFile file('quotes-keystore')
+            storePassword 'quotes123'
+            keyPassword 'quotes123'
+            keyAlias = 'QuotesApp'
+        }
+    }
+
+    compileSdkVersion 30
+    defaultConfig {
+        applicationId "com.hamzabhatti.quotes"
+        minSdkVersion 23
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    buildTypes {
+        debug {
+
+            buildConfigField "String", "API_URL", '"https://quote-garden.herokuapp.com/api/v2/"'
+
+            signingConfig signingConfigs.debug
+            applicationIdSuffix ".dev"
+            versionNameSuffix "-dev-hamza"
+            debuggable true
+
+        }
+        staging {
+
+            buildConfigField "String", "API_URL", '"https://quote-garden.herokuapp.com/api/v2/"'
+
+            signingConfig signingConfigs.debug
+            applicationIdSuffix ".staging"
+            versionNameSuffix "-staging-hamza"
+            debuggable true
+
+        }
+        release {
+
+            buildConfigField "String", "API_URL", '"https://quote-garden.herokuapp.com/api/v2/"'
+
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildToolsVersion '30.0.1'
+
+    androidExtensions {
+        experimental = true
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //Kotlin
+    implementation kotlinLibraries.kotlin
+
+    //Network api
+    implementation networkLibraries.okhttp
+    implementation networkLibraries.retrofit
+    implementation networkLibraries.retrofitGson
+    implementation networkLibraries.httpClient
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.4.0"
+
+    //Support
+    implementation supportLibraries.appCompat
+    implementation supportLibraries.cardView
+    implementation supportLibraries.recyclerView
+    implementation supportLibraries.material
+    implementation supportLibraries.constraint
+
+    //ViewModel & LiveData
+    implementation archLibraries.lifecycle
+    kapt archLibraries.lifecycleCompiler
+
+    //Room + Coroutines
+    implementation archLibraries.roomCoroutines
+    kapt archLibraries.roomCompiler
+
+    testImplementation testLibraries.junit
+    androidTestImplementation testLibraries.testRunner
+    androidTestImplementation testLibraries.espresso
+}

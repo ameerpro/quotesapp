@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="quote"
+            type="com.hamzabhatti.quotes.data.models.Quote" />
+
+        <variable
+            name="adapterReference"
+            type="com.hamzabhatti.quotes.ui.quote.QuotesAdapter" />
+
+        <variable
+            name="position"
+            type="int" />
+
+        <variable
+            name="totalItems"
+            type="int" />
+
+        <variable
+            name="holder"
+            type="com.hamzabhatti.quotes.ui.quote.QuotesAdapter.ViewHolder" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card="http://schemas.android.com/apk/res-auto"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/quote_card"
+        android:layout_width="220dp"
+        card:cardBackgroundColor="@color/colorAccent"
+        android:layout_height="320dp"
+        card:cardCornerRadius="25dp"
+        card:cardElevation="5dp"
+        card:cardUseCompatPadding="true">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/quotes_bg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="30dp"
+                app:tint="#40FFFFFF"
+                android:src="@drawable/ic_inverted_commas" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="30dp"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/tv_item_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/average"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@android:color/white"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Funny Quotes" />
+
+                <TextView
+                    android:id="@+id/tv_item_quote"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:textSize="15sp"
+                    android:lineSpacingExtra="3dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/average"
+                    app:layout_constraintStart_toStartOf="@id/tv_item_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_item_title"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@android:color/white"
+                    android:hint="Learning is a treasure that will follow its owner everywhere. Learning is a treasure that will follow its owner everywhere"
+                    tools:text="@{quote.quoteText}" />
+
+                <TextView
+                    android:id="@+id/tv_item_author"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/average"
+                    app:layout_constraintStart_toStartOf="@id/tv_item_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_item_quote"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@android:color/white"
+                    android:hint="___ Ameer Hamza"
+                    tools:text="@{`___ ` + quote.quoteAuthor}" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
+
+</layout>

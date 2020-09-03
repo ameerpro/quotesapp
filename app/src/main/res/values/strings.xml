@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Qreads</string>
+    <string name="delete">delete</string>
+    <string name="save">Save</string>
+    <string name="enter_title">Enter Title</string>
+    <string name="enter_content">Enter Content</string>
+    <string name="pleaseEnterTitle">Please enter title</string>
+    <string name="pleaseEnterContent">Please enter content</string>
+    <string name="title">Title</string>
+    <string name="content">Content</string>
+    <string name="search">Search</string>
+    <string name="search_here">Search here</string>
+    <string name="title_home">Home</string>
+    <string name="title_liked">Liked Quotes</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_add_quote">Add Quote</string>
+</resources>
